@@ -1,0 +1,16 @@
+#!/usr/bin/env bash
+# The fizz-buzz problem, in script form
+x=1
+while ((x <= 100))
+do
+    if ! ((x % 3)) && ! ((x % 5)); then
+       	echo "FizzBuzz"
+    elif ! ((x % 3)); then
+    	echo "Fizz"
+    elif ! ((x % 5)); then
+    	echo "Buzz"
+    else
+	echo $x
+    fi
+    ((x += 1))
+done

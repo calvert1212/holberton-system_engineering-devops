@@ -1,0 +1,15 @@
+#!/usr/bin/env bash
+# clock script
+x=0
+y=1
+while ((x <= 12))
+do
+	echo "Hour: ${x}"
+	while ((y <= 59))
+	do
+		echo $y
+		((y += 1))
+	done
+	((y = 1))
+	((x += 1))
+done

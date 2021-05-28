@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+# while loop
+x=0
+while ((x < 10))
+do
+		echo "Holberton School"
+		if [[ $x == 8 ]]; then
+			echo "Hi"
+		fi
+		((x += 1))
+done
