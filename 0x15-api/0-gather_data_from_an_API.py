@@ -1,36 +1,26 @@
 #!/usr/bin/python3
-""" gathers data from API """
+""" Returns info about given employee for TODO list"""
 
-# Uses REST API for given employee ID,
-# returns information about his/her TODO list progress.
-
-import requests
-import sys
-
-def get_employee_tasks(employeeId):
-    """ class for getting employee tasks """
-    name = ''
-    task_list = []
-    completed_counter = 0
-
-    userRes = requests.get('https://jsonplaceholder.typicode.com/users/{}'.format(employeeId))
-    todosRes = requests.get('https://jsonplaceholder.typicode.com/users/{}/todos'.format(employeeId))
-
-    """ Get JSON """
-    name = userRes.json().get('name')
-    todosJson = todosRes.json()
-
-    for task in todosJson:
-        if task.get('completed') is True:
-            completed_counter += 1
-            task_list.append(task.get('title'))
-
-    """ Prints formatted string given JSON data """
-    print("Employee {} is done with tasks ({}/{}):".format(name, completed_counter, len(todosJson)))
-    for title in task_list:
-        print("\t {}".format(title))
-
-    return
 
 if __name__ == "__main__":
-    get_employee_tasks(sys.argv[1])
+
+    import requests
+    import sys
+    user = 'https://jsonplaceholder.typicode.com/users/'
+    todo = 'https://jsonplaceholder.typicode.com/todos/'
+    """ Get data """
+    if len(argv) > 1:
+        todo_dict = requests.get(todo, params={"userId": argv[1]}).json()
+        user_dict = requests.get(user, params={"id": argv[1]}).json()
+        EMPLOYEE_NAME = user_dict[0].get("name")
+    TOTAL_NUMBER_OF_TASKS = len(todo_dict)
+    NUMBER_OF_DONE_TASKS = 0
+    """ Count done tasks """
+    for dic in todo_dict:
+        if dic["completed"] is True:
+            NUMBER_OF_DONE_TASKS += 1
+    print("Employee {} is done with tasks({}/{}):"
+          .format(EMPLOYEE_NAME, NUMBER_OF_DONE_TASKS, TOTAL_NUMBER_OF_TASKS))
+    for dic in todo_dict:
+        if dic["completed"] is True:
+            print("\t {}".format(dic["title"]))
