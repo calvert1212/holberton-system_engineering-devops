@@ -6,7 +6,8 @@ from sys import argv
 
 
 if __name__ == "__main__":
-
+    
+    name = ''
     c = 0
     task_list = []
     """ Gets the user and task data """

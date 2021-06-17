@@ -26,8 +26,8 @@ if __name__ == "__main__":
         """ Appends row to the tasks list """
         all_tasks.append(task_row)
 
-    f = '{}.csv'.format(argv[1])
+    filename = '{}.csv'.format(argv[1])
 
-    with open(f, 'w') as csvfile:
+    with open(filename, 'w') as csvfile:
         csvwriter = csv.writer(csvfile, quoting=csv.QUOTE_ALL)
         csvwriter.writerows(all_tasks)
